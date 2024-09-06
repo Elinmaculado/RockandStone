@@ -51,16 +51,17 @@ public class GameBehavior : MonoBehaviour
         scoreText.text = (int)currentScore + " $";
         scoreIncreasePerSecond = x * Time.deltaTime;
         currentScore += scoreIncreasePerSecond;
-        /*
+        
         //Shop
-        shop1Text.text = "Autoclick Tier 1: " + shop1Price + " $";
-        shop2Text.text = "Autoclick Tier 2: " + shop2Price + " $";
+        shop1Text.text = "Tier 1: " + shop1Price + " $";
+        shop2Text.text = "Tier 2: " + shop2Price + " $";
 
-        ammount1Text.text = "Tier 1: " + ammount1 + "arts $: " + ammount1Profit + "/s";
-        ammount2Text.text = "Tier 1: " + ammount2 + "arts $: " + ammount2Profit + "/s";
-        */
+        ammount1Text.text = "Lvl " + ammount1 + ": $" + ammount1Profit + "/s";
+        ammount2Text.text = "Lvl " + ammount2 + ": $" + ammount2Profit + "/s";
+        
     }
 
+    //Click
     public void Hit()
     {
         currentScore += hitPower;
@@ -78,5 +79,30 @@ public class GameBehavior : MonoBehaviour
 
         // Asignar el nuevo color a la imagen
         image.color = currentColor;
+    }
+
+    //Shop
+    public void Shop1()
+    {
+        if(currentScore >= shop1Price)
+        {
+            currentScore -= shop1Price;
+            ammount1 += 1;
+            ammount1Profit += 1;
+            x += 1;
+            shop1Price += 25;
+        }
+    }
+
+    public void shop2()
+    {
+        if (currentScore >= shop2Price)
+        {
+            currentScore -= shop2Price;
+            ammount2 += 1;
+            ammount2Profit += 5;
+            x += 5;
+            shop2Price += 125;
+        }
     }
 }
