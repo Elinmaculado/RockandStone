@@ -34,6 +34,9 @@ public class GameBehavior : MonoBehaviour
     public int ammount2;
     public float ammount2Profit;
 
+    //UpgradeClick
+    public int upgradePrice;
+    public Text upgradeText;
 
     void Start()
     {
@@ -43,6 +46,7 @@ public class GameBehavior : MonoBehaviour
         //hitPower = 1;
         scoreIncreasePerSecond = 1;
         x = 0f;
+        
     }
 
     void Update()
@@ -58,7 +62,9 @@ public class GameBehavior : MonoBehaviour
 
         ammount1Text.text = "Lvl " + ammount1 + ": $" + ammount1Profit + "/s";
         ammount2Text.text = "Lvl " + ammount2 + ": $" + ammount2Profit + "/s";
-        
+
+        //Upgrade
+        upgradeText.text = "Price: " + upgradePrice + " $";
     }
 
     //Click
@@ -94,7 +100,7 @@ public class GameBehavior : MonoBehaviour
         }
     }
 
-    public void shop2()
+    public void Shop2()
     {
         if (currentScore >= shop2Price)
         {
@@ -103,6 +109,17 @@ public class GameBehavior : MonoBehaviour
             ammount2Profit += 5;
             x += 5;
             shop2Price += 125;
+        }
+    }
+
+    //UpgradeClick
+    public void Upgrade()
+    {
+        if (currentScore >= upgradePrice)
+        {
+            currentScore -= upgradePrice;
+            hitPower *= 2;
+            upgradePrice *= 2;
         }
     }
 }
