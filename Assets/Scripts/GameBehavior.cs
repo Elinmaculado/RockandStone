@@ -22,9 +22,15 @@ public class GameBehavior : MonoBehaviour
     //Shop
     public Text shop1Text;
     public int shop1Price;
+    public Button shop1Button;
 
     public Text shop2Text;
     public int shop2Price;
+    public Button shop2Button;
+
+    public Text shop3Text;
+    public int shop3Price;
+    public Button shop3Button;
 
     public Text ammount1Text;
     public int ammount1;
@@ -33,6 +39,12 @@ public class GameBehavior : MonoBehaviour
     public Text ammount2Text;
     public int ammount2;
     public float ammount2Profit;
+
+    public Text ammount3Text;
+    public int ammount3;
+    public float ammount3Profit;
+
+    
 
     //UpgradeClick
     public int upgradePrice;
@@ -55,13 +67,16 @@ public class GameBehavior : MonoBehaviour
         scoreText.text = (int)currentScore + " $";
         scoreIncreasePerSecond = x * Time.deltaTime;
         currentScore += scoreIncreasePerSecond;
-        
+        UpdateColor();
+
         //Shop
         shop1Text.text = "Tier 1: " + shop1Price + " $";
         shop2Text.text = "Tier 2: " + shop2Price + " $";
+        shop3Text.text = "Tier 3: " + shop3Price + " $";
 
         ammount1Text.text = "Lvl " + ammount1 + ": $" + ammount1Profit + "/s";
         ammount2Text.text = "Lvl " + ammount2 + ": $" + ammount2Profit + "/s";
+        ammount3Text.text = "Lvl " + ammount3 + ": $" + ammount3Profit + "/s";
 
         //Upgrade
         upgradeText.text = "Price: " + upgradePrice + " $";
@@ -71,11 +86,15 @@ public class GameBehavior : MonoBehaviour
     public void Hit()
     {
         currentScore += hitPower;
+    }
 
-        // Obtener el porcentaje de progreso del score
-        float progress = Mathf.Clamp01(currentScore / 10); // Se asegura de que el progreso esté entre 0 y 1
-
-        // Obtener el color actual de la imagen
+    public void UpdateColor()
+    {
+        if (currentScore >= planetDarkLimit)
+        {
+            image.enabled = false;
+        }
+        float progress = Mathf.Clamp01(currentScore / planetDarkLimit);
         currentColor = image.color;
 
         // Calcular los nuevos valores de color basados en el progreso
@@ -90,7 +109,12 @@ public class GameBehavior : MonoBehaviour
     //Shop
     public void Shop1()
     {
-        if(currentScore >= shop1Price)
+        if (ammount1 >= 10)
+        {
+            shop1Button.interactable = false;
+            return;
+        }
+        else if(currentScore >= shop1Price)
         {
             currentScore -= shop1Price;
             ammount1 += 1;
@@ -102,13 +126,34 @@ public class GameBehavior : MonoBehaviour
 
     public void Shop2()
     {
-        if (currentScore >= shop2Price)
+        if(ammount2 >= 10)
+        {
+            shop2Button.interactable = false;
+            return;
+        }
+        else if (currentScore >= shop2Price)
         {
             currentScore -= shop2Price;
             ammount2 += 1;
             ammount2Profit += 5;
             x += 5;
             shop2Price += 125;
+        }
+    }
+
+    public void Shop3()
+    {
+        if (ammount3 >= 10)
+        {
+            shop3Button.interactable = false;
+        }
+        if (currentScore >= shop3Price)
+        {
+            currentScore -= shop3Price;
+            ammount3 += 1;
+            ammount3Profit += 15;
+            x += 15;
+            shop3Price += 400;
         }
     }
 
@@ -119,7 +164,7 @@ public class GameBehavior : MonoBehaviour
         {
             currentScore -= upgradePrice;
             hitPower *= 2;
-            upgradePrice *= 2;
+            upgradePrice *= 3;
         }
     }
 }
