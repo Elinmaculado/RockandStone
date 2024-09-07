@@ -49,6 +49,7 @@ public class GameBehavior : MonoBehaviour
     //UpgradeClick
     public int upgradePrice;
     public Text upgradeText;
+    public Button upgradeButton;
 
     void Start()
     {
@@ -67,6 +68,8 @@ public class GameBehavior : MonoBehaviour
         ammount1Text.text = "Lvl " + ammount1 + ": $" + ammount1Profit + "/s";
         ammount2Text.text = "Lvl " + ammount2 + ": $" + ammount2Profit + "/s";
         ammount3Text.text = "Lvl " + ammount3 + ": $" + ammount3Profit + "/s";
+
+        upgradeText.text = "Price: " + upgradePrice + " $";
     }
 
     void Update()
@@ -80,7 +83,7 @@ public class GameBehavior : MonoBehaviour
         //Shop
 
         //Upgrade
-        upgradeText.text = "Price: " + upgradePrice + " $";
+        
     }
 
     #region Click
@@ -175,6 +178,12 @@ public class GameBehavior : MonoBehaviour
             currentScore -= upgradePrice;
             hitPower *= 2;
             upgradePrice *= 3;
+            upgradeText.text = "Price: " + upgradePrice + " $";
+            if (hitPower >=12)
+            {
+                upgradeButton.interactable = false;
+                upgradeText.text = "MAX";
+            }
         }
     }
     #endregion
