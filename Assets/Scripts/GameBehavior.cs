@@ -9,7 +9,7 @@ public class GameBehavior : MonoBehaviour
     //Clicking / Score
     public Text scoreText;
     public float currentScore;
-    public float hitPower;
+    public float clickPower;
     public float scoreIncreasePerSecond;
     public float x;
 
@@ -50,6 +50,8 @@ public class GameBehavior : MonoBehaviour
     public int upgradePrice;
     public Text upgradeText;
     public Button upgradeButton;
+
+    public GameObject gameEnd;
 
     void Start()
     {
@@ -119,14 +121,14 @@ public class GameBehavior : MonoBehaviour
     #region Click
     public void Hit()
     {
-        currentScore += hitPower;
+        currentScore += clickPower;
     }
 
     public void UpdateColor()
     {
         if (currentScore >= planetDarkLimit)
         {
-            image.enabled = false;
+            endGame();
         }
         float progress = Mathf.Clamp01(currentScore / planetDarkLimit);
         currentColor = image.color;
@@ -203,10 +205,10 @@ public class GameBehavior : MonoBehaviour
         if (currentScore >= upgradePrice)
         {
             currentScore -= upgradePrice;
-            hitPower *= 2;
+            clickPower *= 2;
             upgradePrice *= 3;
             upgradeText.text = "Price: " + upgradePrice + " $";
-            if (hitPower >=12)
+            if (clickPower >=12)
             {
                 upgradeButton.interactable = false;
                 upgradeText.text = "MAX";
@@ -214,4 +216,10 @@ public class GameBehavior : MonoBehaviour
         }
     }
     #endregion
+
+   public void endGame()
+    {
+        image.enabled = false;
+        gameEnd.SetActive(true);
+    }
 }
