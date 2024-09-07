@@ -339,7 +339,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 45
+    m_FontSize: 42
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 4
@@ -350,7 +350,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: Upgrade
 --- !u!222 &384024143
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1045,7 +1045,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 45
+    m_FontSize: 42
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 4
@@ -1056,7 +1056,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: Upgrade
 --- !u!222 &993956065
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2262,7 +2262,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 45
+    m_FontSize: 42
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 4
@@ -2273,7 +2273,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: 'Upgrade
+
+'
 --- !u!222 &2061450759
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2527,13 +2529,13 @@ MonoBehaviour:
   currentColor: {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 0}
   shop1Text: {fileID: 2104055643}
   shop1Price: 25
-  shop1Button: {fileID: 0}
+  shop1Button: {fileID: 2016970681}
   shop2Text: {fileID: 1561009124}
   shop2Price: 150
-  shop2Button: {fileID: 0}
+  shop2Button: {fileID: 1753269931}
   shop3Text: {fileID: 2099411251}
   shop3Price: 300
-  shop3Button: {fileID: 0}
+  shop3Button: {fileID: 1101029989}
   ammount1Text: {fileID: 1822415438}
   ammount1: 0
   ammount1Profit: 0

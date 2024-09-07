@@ -59,6 +59,14 @@ public class GameBehavior : MonoBehaviour
         scoreIncreasePerSecond = 1;
         x = 0f;
         
+        shop1Text.text = "Tier 1: " + shop1Price + " $";
+        shop2Text.text = "Tier 2: " + shop2Price + " $";
+        shop3Text.text = "Tier 3: " + shop3Price + " $";
+
+
+        ammount1Text.text = "Lvl " + ammount1 + ": $" + ammount1Profit + "/s";
+        ammount2Text.text = "Lvl " + ammount2 + ": $" + ammount2Profit + "/s";
+        ammount3Text.text = "Lvl " + ammount3 + ": $" + ammount3Profit + "/s";
     }
 
     void Update()
@@ -70,19 +78,12 @@ public class GameBehavior : MonoBehaviour
         UpdateColor();
 
         //Shop
-        shop1Text.text = "Tier 1: " + shop1Price + " $";
-        shop2Text.text = "Tier 2: " + shop2Price + " $";
-        shop3Text.text = "Tier 3: " + shop3Price + " $";
-
-        ammount1Text.text = "Lvl " + ammount1 + ": $" + ammount1Profit + "/s";
-        ammount2Text.text = "Lvl " + ammount2 + ": $" + ammount2Profit + "/s";
-        ammount3Text.text = "Lvl " + ammount3 + ": $" + ammount3Profit + "/s";
 
         //Upgrade
         upgradeText.text = "Price: " + upgradePrice + " $";
     }
 
-    //Click
+    #region Click
     public void Hit()
     {
         currentScore += hitPower;
@@ -105,48 +106,50 @@ public class GameBehavior : MonoBehaviour
         // Asignar el nuevo color a la imagen
         image.color = currentColor;
     }
+    #endregion
 
-    //Shop
+    #region Shop
     public void Shop1()
     {
-        if (ammount1 >= 10)
-        {
-            shop1Button.interactable = false;
-            return;
-        }
-        else if(currentScore >= shop1Price)
+         if(currentScore >= shop1Price)
         {
             currentScore -= shop1Price;
             ammount1 += 1;
             ammount1Profit += 1;
             x += 1;
             shop1Price += 25;
+            shop1Text.text = "Tier 1: " + shop1Price + " $";
+            ammount1Text.text = "Lvl " + ammount1 + ": $" + ammount1Profit + "/s";
+            if (ammount1 >=10)
+            {
+                shop1Button.interactable = false;
+                shop1Text.text = "Tier 1 MAX";
+                
+            }
         }
     }
 
     public void Shop2()
     {
-        if(ammount2 >= 10)
-        {
-            shop2Button.interactable = false;
-            return;
-        }
-        else if (currentScore >= shop2Price)
+        if (currentScore >= shop2Price)
         {
             currentScore -= shop2Price;
             ammount2 += 1;
             ammount2Profit += 5;
             x += 5;
             shop2Price += 125;
+            shop2Text.text = "Tier 2: " + shop2Price + " $";
+            ammount2Text.text = "Lvl " + ammount2 + ": $" + ammount2Profit + "/s";
+            if (ammount2 >= 10)
+            {
+                shop2Button.interactable = false;
+                shop2Text.text = "Tier 2 MAX";
+            }
         }
     }
 
     public void Shop3()
     {
-        if (ammount3 >= 10)
-        {
-            shop3Button.interactable = false;
-        }
         if (currentScore >= shop3Price)
         {
             currentScore -= shop3Price;
@@ -154,6 +157,13 @@ public class GameBehavior : MonoBehaviour
             ammount3Profit += 15;
             x += 15;
             shop3Price += 400;
+            shop3Text.text = "Tier 3: " + shop3Price + " $";
+            ammount3Text.text = "Lvl " + ammount3 + ": $" + ammount3Profit + "/s";
+            if (ammount3 >= 10)
+            {
+                shop3Button.interactable = false;
+                shop3Text.text = "Tier 3 MAX";
+            }
         }
     }
 
@@ -167,4 +177,5 @@ public class GameBehavior : MonoBehaviour
             upgradePrice *= 3;
         }
     }
+    #endregion
 }
