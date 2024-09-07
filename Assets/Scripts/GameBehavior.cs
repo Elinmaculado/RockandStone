@@ -44,7 +44,7 @@ public class GameBehavior : MonoBehaviour
     public int ammount3;
     public float ammount3Profit;
 
-    
+    private int shopLimit = 10;
 
     //UpgradeClick
     public int upgradePrice;
@@ -80,10 +80,40 @@ public class GameBehavior : MonoBehaviour
         currentScore += scoreIncreasePerSecond;
         UpdateColor();
 
-        //Shop
-
-        //Upgrade
+        if (currentScore < shop1Price || ammount1 >= shopLimit)
+        {
+            shop1Button.interactable = false;
+        }
+        else
+        {
+            shop1Button.interactable = true;
+        }
         
+        if (currentScore < shop2Price || ammount2 >= shopLimit)
+        {
+            shop2Button.interactable = false;
+        }
+        else
+        {
+            shop2Button.interactable = true;
+        }
+        if (currentScore < shop3Price || ammount3 >= shopLimit)
+        {
+            shop3Button.interactable = false;
+        }
+        else
+        {
+            shop3Button.interactable = true;
+        }
+
+        if (currentScore < upgradePrice)
+        {
+            upgradeButton.interactable = false;
+        }
+        else
+        { 
+            upgradeButton.interactable = true; 
+        }
     }
 
     #region Click
@@ -114,8 +144,7 @@ public class GameBehavior : MonoBehaviour
     #region Shop
     public void Shop1()
     {
-         if(currentScore >= shop1Price)
-        {
+
             currentScore -= shop1Price;
             ammount1 += 1;
             ammount1Profit += 1;
@@ -129,13 +158,12 @@ public class GameBehavior : MonoBehaviour
                 shop1Text.text = "Tier 1 MAX";
                 
             }
-        }
+        
     }
 
     public void Shop2()
     {
-        if (currentScore >= shop2Price)
-        {
+
             currentScore -= shop2Price;
             ammount2 += 1;
             ammount2Profit += 5;
@@ -148,13 +176,12 @@ public class GameBehavior : MonoBehaviour
                 shop2Button.interactable = false;
                 shop2Text.text = "Tier 2 MAX";
             }
-        }
+        
     }
 
     public void Shop3()
     {
-        if (currentScore >= shop3Price)
-        {
+
             currentScore -= shop3Price;
             ammount3 += 1;
             ammount3Profit += 15;
@@ -167,7 +194,7 @@ public class GameBehavior : MonoBehaviour
                 shop3Button.interactable = false;
                 shop3Text.text = "Tier 3 MAX";
             }
-        }
+        
     }
 
     //UpgradeClick
