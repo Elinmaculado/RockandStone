@@ -82,7 +82,7 @@ public class GameBehavior : MonoBehaviour
             return;
         }
         //Click
-        scoreText.text = (int)currentScore + " $";
+        scoreText.text = "Score: "+(int)currentScore + " $";
         scoreIncreasePerSecond = x * Time.deltaTime;
         currentScore += scoreIncreasePerSecond;
         UpdateColor();
