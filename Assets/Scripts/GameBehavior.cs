@@ -76,6 +76,11 @@ public class GameBehavior : MonoBehaviour
 
     void Update()
     {
+        if (currentScore >= planetDarkLimit)
+        {
+            endGame();
+            return;
+        }
         //Click
         scoreText.text = (int)currentScore + " $";
         scoreIncreasePerSecond = x * Time.deltaTime;
@@ -126,10 +131,7 @@ public class GameBehavior : MonoBehaviour
 
     public void UpdateColor()
     {
-        if (currentScore >= planetDarkLimit)
-        {
-            endGame();
-        }
+
         float progress = Mathf.Clamp01(currentScore / planetDarkLimit);
         currentColor = image.color;
 
@@ -219,7 +221,14 @@ public class GameBehavior : MonoBehaviour
 
    public void endGame()
     {
+        Debug.Log("The game has ended");
         image.enabled = false;
+        x = 0;
+        shop1Button.interactable = false;
+        shop2Button.interactable = false;
+        shop3Button.interactable = false;
+        upgradeButton.interactable = false;
         gameEnd.SetActive(true);
+        gameObject.SetActive(false);
     }
 }
