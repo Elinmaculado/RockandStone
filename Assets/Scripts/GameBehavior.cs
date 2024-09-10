@@ -76,13 +76,13 @@ public class GameBehavior : MonoBehaviour
 
     void Update()
     {
+        scoreText.text = "Score: "+(int)currentScore + " $";
         if (currentScore >= planetDarkLimit)
         {
             endGame();
             return;
         }
         //Click
-        scoreText.text = "Score: "+(int)currentScore + " $";
         scoreIncreasePerSecond = x * Time.deltaTime;
         currentScore += scoreIncreasePerSecond;
         UpdateColor();
@@ -221,6 +221,7 @@ public class GameBehavior : MonoBehaviour
 
    public void endGame()
     {
+
         Debug.Log("The game has ended");
         image.enabled = false;
         x = 0;
